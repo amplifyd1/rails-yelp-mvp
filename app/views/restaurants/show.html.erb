@@ -1,0 +1,18 @@
+<div class="container">
+<h1><%= @restaurant.name %></h1>
+<p> <%= @restaurant.category.capitalize %> </p>
+<p> <%= @restaurant.address.capitalize %> </p>
+<% @restaurant.reviews.each do |review| %>
+  <p><%= review.content %> | <%= review.rating %> Stars</p>
+<% end %>
+<!-- <p> <%= link_to 'Add Review', new_restaurant_review_path(@restaurant) %> |
+<%= link_to 'Destroy', @restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
+<h1>You are reviewing <%= @restaurant.name %></h1>
+<%= simple_form_for([@restaurant, @review]) do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating, collection: [1,2,3,4,5] %>
+  <%= f.submit %>
+<% end %>
+<p><%= link_to 'Home', root_path %>  |  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %></p>
+
+</div>
